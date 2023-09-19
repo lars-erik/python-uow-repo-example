@@ -1,3 +1,6 @@
 .idea/
 venv/
+
+# either or does not work... 🤯 🤷‍♂️
 src/tests/students.db
+/students.db
