@@ -1,5 +1,6 @@
 import pytest
 
+from src.core.Repository import Repository
 from src.core.UnitOfWork import UnitOfWork
 from src.core.student import Student
 from src.db import SqlaUnitOfWork, SqlaRepository, DatabaseInitializer
@@ -14,8 +15,11 @@ def uow() -> UnitOfWork:
     unitOfWork.close()
     DatabaseInitializer.remove_database()
 
-def test_crud_lifecycle(uow):
-    repo = SqlaRepository(uow, Student, "student_number")
+@pytest.fixture()
+def student_repo(uow) -> Repository:
+    return SqlaRepository(uow, Student, "student_number")
+
+def test_crud_lifecycle(uow: UnitOfWork, repo: Repository):
     lars = Student("0001", "Lars-Erik", "Aabech", 1)
 
     repo.create(lars)
@@ -38,8 +42,7 @@ def test_crud_lifecycle(uow):
     larsFromDb = repo.read("0001")
     assert larsFromDb == None
 
-def test_crud_query(uow):
-    repo = SqlaRepository(uow, Student, "student_number")
+def test_crud_query(uow: UnitOfWork, repo: Repository):
     lars = Student("0001", "Lars-Erik", "Aabech", 1)
     mats = Student("0002", "Mats", "Lindh", 2)
     arne = Student("0003", "Arne", "Normann", 2)
