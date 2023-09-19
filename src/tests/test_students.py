@@ -1,7 +1,11 @@
 from src.core import Student
 
 
-def test_says_hi():
+def test_student_greeting():
+    """
+    This test is here to show that we have a "pure" test testing "pure" logic on the domain entity.
+    """
+
     # Arrange
     lars = Student("0001", "Lars-Erik", "Aabech", 1)
 

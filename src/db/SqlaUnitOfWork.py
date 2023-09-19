@@ -3,6 +3,9 @@ from src.db.DatabaseInitializer import DatabaseInitializer
 
 
 class SqlaUnitOfWork(UnitOfWork):
+    """
+    A SQLAlchemy-specific UnitOfWork implementation
+    """
 
     def __init__(self):
         self.session = DatabaseInitializer.create_session()

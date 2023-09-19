@@ -1,4 +1,8 @@
 class Student():
+    """
+    A Student is the main logic class of our system.
+    It's important to keep it as readable, maintainable and free of dependencies as possible.
+    """
 
     def __init__(self, student_number, first_name, last_name, year):
         self.student_number = student_number
@@ -7,6 +11,9 @@ class Student():
         self.year = year
 
     def greet(self):
+        """
+        :return: An iunformal greeting of the student
+        """
         return f"Hi, {self.first_name} {self.last_name}"
 
 """
