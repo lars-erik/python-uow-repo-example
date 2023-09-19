@@ -1,7 +1,8 @@
+from src.core.UnitOfWork import UnitOfWork
 from src.db.DatabaseInitializer import DatabaseInitializer
 
 
-class UnitOfWork():
+class SqlaUnitOfWork(UnitOfWork):
 
     def __init__(self):
         self.session = DatabaseInitializer.create_session()

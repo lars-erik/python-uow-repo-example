@@ -1,5 +1,5 @@
-from .Repository import Repository
-from .UnitOfWork import UnitOfWork
+from .SqlaRepository import SqlaRepository
+from .SqlaUnitOfWork import SqlaUnitOfWork
 from .DatabaseInitializer import DatabaseInitializer
 
-__all__ = ['Repository', 'UnitOfWork', 'DatabaseInitializer']
+__all__ = ['SqlaRepository', 'SqlaUnitOfWork', 'DatabaseInitializer']

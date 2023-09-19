@@ -1,20 +1,21 @@
 import pytest
 
+from src.core.UnitOfWork import UnitOfWork
 from src.core.student import Student
-from src.db import UnitOfWork, Repository, DatabaseInitializer
+from src.db import SqlaUnitOfWork, SqlaRepository, DatabaseInitializer
 
 DatabaseInitializer.initialize('sqlite:///students.db')
 
 @pytest.fixture()
-def uow():
+def uow() -> UnitOfWork:
     DatabaseInitializer.recreate_database()
-    unitOfWork = UnitOfWork()
+    unitOfWork = SqlaUnitOfWork()
     yield unitOfWork
     unitOfWork.close()
     DatabaseInitializer.remove_database()
 
 def test_crud_lifecycle(uow):
-    repo = Repository(uow, Student, "student_number")
+    repo = SqlaRepository(uow, Student, "student_number")
     lars = Student("0001", "Lars-Erik", "Aabech", 1)
 
     repo.create(lars)
@@ -38,7 +39,7 @@ def test_crud_lifecycle(uow):
     assert larsFromDb == None
 
 def test_crud_query(uow):
-    repo = Repository(uow, Student, "student_number")
+    repo = SqlaRepository(uow, Student, "student_number")
     lars = Student("0001", "Lars-Erik", "Aabech", 1)
     mats = Student("0002", "Mats", "Lindh", 2)
     arne = Student("0003", "Arne", "Normann", 2)
