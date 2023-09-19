@@ -1,0 +1,89 @@
+@startuml
+skinparam linetype ortho
+hide empty members
+
+' package Dependency_Free {
+
+    package Core {
+
+        class Student {
+            student_number: string
+            first_name: string
+            last_name: string
+            year: integer
+
+            greet(): string
+        }
+
+        interface Repository {
+            create(entity)
+            update(entity)
+            delete(entity)
+            read(id)
+            query(predicate)
+        }
+
+        interface UnitOfWork {
+            commit()
+            close()
+        }
+
+        class DoSomethingToStudents {
+            execute(SomethingCommand cmd)
+        }
+
+        Repository -> UnitOfWork : uow
+
+    }
+
+    package UnitTests {
+        class test_module {
+            test_logic()
+        }
+    }
+
+
+' }
+
+DoSomethingToStudents --> Repository
+DoSomethingToStudents --> Student
+UnitTests -down-> Core
+UnitTests .down.> Core : Injects fake repositories
+
+' package Dependant {
+
+    package DB {
+        class DatabaseInitializer {
+            {static} initialize(connection_string)
+            {static} create_session()
+            --
+            {static} create_database()
+            {static} remove_database()
+            {static} recreate_database()
+        }
+
+        class SqlaUnitOfWork {
+        }
+
+        class SqlaRepository {
+        }
+    }
+
+    package IntegrationTests {
+        class test_module {
+            test_persistence()
+        }
+    }
+
+' }
+
+SqlaUnitOfWork -up-|> UnitOfWork
+SqlaRepository -up-|> Repository
+SqlaRepository -right-> SqlaUnitOfWork : uow
+
+IntegrationTests -left-> DB
+IntegrationTests -up-> Core
+
+IntegrationTests .up.> Core : Injects SqlaRepository to logic
+
+@enduml

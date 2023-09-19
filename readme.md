@@ -8,6 +8,10 @@ This is a sample repository showing how we can use pure domain models with SQLAl
 - Install the dependencies by running `pip install -r requirements.txt`
 - Run tests using your IDE or `python -m pytest`
 
+## Architecture
+
+![Class diagram of the project](http://www.plantuml.com/plantuml/svg/dLFDRjiy4BphANYBV50U88SW-69yG4u5cXGz6WmvbbdpXo6NJTNKxrwgLXA9KeIYF1ZmpEnobfgzYSG39QEhU5JMyy0Dqyg2EW_c0XrSTL0I3CPJnmpC8qAigWlckJZo5cmB3ojXHRVxFm3ifQfOFg_qhGjdR3X2ynZPFQLSGfbWenFFwCwc_fQh_3yesquaUnLY5d23HLhpDRO3prsL9RG8rOHg0q3rPbPsUfVrTM7F1TXdU1SLkT0L0uW0JgXXIL6tcL39ouye2OqFg00kQoMdu5D2w6eV89NWXCswsIzMqQVzLnUEfLbdZCepJq7j8aROgVnoMtVl3EYWRFlWXiyOYyxu0P48zPloDb_5hMJ2oCNMemTjhiUEhrXopsVTQPghNlI0sDzTEAICxeoJIMFgwyneroencN3eNbtqlylpDStroEIAQFXJlTjhf7kscUaNOGHVzl3b6SvZtjbl41dUyoDOUBr9OM7LkALooRR_pLvXoua_yeWxgqXnhNuY5A_n4ecJ4YUctYIrSDP2a79sTrw4pMB94FHTH8nPMsIeQLQBvE2i_g1tW77V_qPMz5jBxVsJviKYh2WNz_kqbC8xIsW3xn_idyBe4QAA12imZ-IGoC9xatppQxmaLM5v4BmZCq5GxO5o97jylcopcHgDVPRdb2rmoRzcUqvU9ZzFU6667FkpaLLr0okJqRy1)
+
 ## Why?
 
 We want to keep our domains as free of dependencies as possible.
