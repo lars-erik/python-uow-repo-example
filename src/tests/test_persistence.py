@@ -1,16 +1,17 @@
 import pytest
 
 from src.core.student import Student
-from src.db import UnitOfWork, Repository
+from src.db import UnitOfWork, Repository, DatabaseInitializer
 
-unitOfWork = UnitOfWork('sqlite:///students.db')
-
+DatabaseInitializer.initialize('sqlite:///students.db')
 
 @pytest.fixture()
 def uow():
-    unitOfWork.recreate_database()
+    DatabaseInitializer.recreate_database()
+    unitOfWork = UnitOfWork()
     yield unitOfWork
-    unitOfWork.remove_database()
+    unitOfWork.close()
+    DatabaseInitializer.remove_database()
 
 def test_crud_lifecycle(uow):
     repo = Repository(uow, Student, "student_number")
