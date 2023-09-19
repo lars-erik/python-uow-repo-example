@@ -47,7 +47,7 @@ This class has absolutely no external dependencies and should be compatible with
 It stands as a clear counterpart to the followin Django-bound entity; that has a parameterless constructor
 imposed upon it in favor of a static factory method, and each field is initialized using
 tightly coupled factory methods for metadata _and_ value instances.  
-It clearly validates all of the SOLID principles all in one nice package. 
+It clearly violates all of the SOLID principles all in one nice package. 
 
 ```python
 from django.db import models
