@@ -3,7 +3,7 @@ import os
 from sqlalchemy import MetaData, Table, Column, String, Integer, PrimaryKeyConstraint, create_engine
 from sqlalchemy.orm import registry, sessionmaker
 
-from src.core.student import Student
+from src.core.Student import Student
 
 
 class DatabaseInitializer:
