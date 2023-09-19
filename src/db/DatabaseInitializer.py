@@ -1,6 +1,6 @@
 import os
 
-from sqlalchemy import MetaData, Table, Column, String, Integer, PrimaryKeyConstraint, create_engine
+from sqlalchemy import MetaData, Table, Column, String, Integer, PrimaryKeyConstraint, create_engine, CheckConstraint
 from sqlalchemy.orm import registry, sessionmaker
 
 from src.core.Student import Student
@@ -34,9 +34,9 @@ class DatabaseInitializer:
                 'students',
                 cls.metadata,
                 Column('student_number', String, primary_key=True),
-                Column('first_name', String),
-                Column('last_name', String),
-                Column('year', Integer)
+                Column('first_name', String(50)),
+                Column('last_name', String(50)),
+                Column('year', Integer, CheckConstraint('year >= 1 '))
             )
             PrimaryKeyConstraint('student_number', name='PK_students')
 
